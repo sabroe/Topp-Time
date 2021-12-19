@@ -1,0 +1,7 @@
+/*** FILE "settings.gradle" ***************************************************/
+
+rootProject.name = 'Java-Clock-Control'
+
+include 'Clock-Builder-Library'
+
+/******** "settings.gradle" ***************************************************/

@@ -1,0 +1,25 @@
+plugins {
+    id 'java-library-distribution'
+    id 'groovy'
+}
+
+version = '0.0.1-SNAPSHOT'
+
+test {
+    systemProperty "org.slf4j.simpleLogger.defaultLogLevel", "debug"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    api 'org.slf4j:slf4j-api:1.7.30'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.30'
+
+    testImplementation 'org.codehaus.groovy:groovy:3.0.9'
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+}
