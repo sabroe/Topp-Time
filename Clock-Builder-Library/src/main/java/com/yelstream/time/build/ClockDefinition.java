@@ -17,9 +17,7 @@ public class ClockDefinition {
     @Getter
     private final String declaration;
 
-//    public
-
     public Clock toClock() {
-        return ClockBuilder.parse(declaration).build();
+        return new DefaultClockParser().parse(this);
     }
 }

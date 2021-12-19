@@ -13,15 +13,19 @@ public class AdHocDemo {
 
         showClock("SystemClock", SystemClock.getSystemClock());
 
-        showClock("ClockBuilder, systemInDefaultZone", ClockBuilder.parse("systemInDefaultZone").build());
-        showClock("ClockBuilder, systemInZoneUTC", ClockBuilder.parse("systemInZoneUTC").build());
-        showClock("ClockBuilder, systemInZone", ClockBuilder.parse("systemInZone(zoneId=Europe/London)").build());
-        showClock("ClockBuilder, fixed", ClockBuilder.parse("fixed(localDateTime=2021-12-31T00:00:00,zoneId=Europe/Copenhagen)").build());
-        showClock("ClockBuilder, fixed, offsetDuration", ClockBuilder.parse("fixed(localDateTime=2021-12-31T10:00:00,zoneId=Europe/Copenhagen,offsetDuration=P2D)").build());
+        showClock("ClockBuilder, systemInDefaultZone", createClock("systemInDefaultZone"));
+        showClock("ClockBuilder, systemInZoneUTC", createClock("systemInZoneUTC"));
+        showClock("ClockBuilder, systemInZone", createClock("systemInZone(zoneId=Europe/London)"));
+        showClock("ClockBuilder, fixed", createClock("fixed(localDateTime=2021-12-31T00:00:00,zoneId=Europe/Copenhagen)"));
+        showClock("ClockBuilder, fixed, offsetDuration", createClock("fixed(localDateTime=2021-12-31T10:00:00,zoneId=Europe/Copenhagen,offsetDuration=P2D)"));
 //        showClock("ClockBuilder, fixed", ClockBuilder.parse("fixed(localDateTime=2021-12-31T00:00:00,zoneId=America/New_York)").build());
 //        showClock("ClockBuilder, fixed, offsetDuration", ClockBuilder.parse("fixed(localDateTime=2021-12-31T10:00:00,zoneId=America/New_York,offsetDuration=P2D)").build());
-        showClock("ClockBuilder, startingAtTime", ClockBuilder.parse("startingAtTime(localDateTime=2025-12-31T10:00:00,zoneId=Europe/Copenhagen)").build());
-        showClock("ClockBuilder, startingAtTime, tickDuration", ClockBuilder.parse("startingAtTime(localDateTime=2021-12-31T10:00:00,zoneId=Europe/Copenhagen,tickDuration=PT15M)").build());
+        showClock("ClockBuilder, startingAtTime", createClock("startingAtTime(localDateTime=2025-12-31T10:00:00,zoneId=Europe/Copenhagen)"));
+        showClock("ClockBuilder, startingAtTime, tickDuration", createClock("startingAtTime(localDateTime=2021-12-31T10:00:00,zoneId=Europe/Copenhagen,tickDuration=PT15M)"));
+    }
+
+    public static Clock createClock(String declaration) {
+        return new ClockDefinition(declaration).toClock();
     }
 
     private static Instant globalInstant;
