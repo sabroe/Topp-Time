@@ -17,8 +17,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 
-    api 'org.slf4j:slf4j-api:1.7.30'
-    testImplementation 'org.slf4j:slf4j-simple:1.7.30'
+    api 'org.slf4j:slf4j-api:1.7.32'
+    testImplementation 'org.slf4j:slf4j-simple:1.7.32'
 
     testImplementation 'org.codehaus.groovy:groovy:3.0.9'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
