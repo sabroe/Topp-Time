@@ -17,14 +17,14 @@ import java.util.function.UnaryOperator;
  * @since 2021-12-21
  */
 @RequiredArgsConstructor
-class DateTimeScaledClock extends Clock {
+public class ZonedDateTimeScaledClock extends Clock {
 
     private final Clock clock;
     private final UnaryOperator<Duration> scaleOperator;
-    private final ZonedDateTime dateTime;
+    private final ZonedDateTime timestamp0;
 
-    public DateTimeScaledClock(Clock clock,
-                               UnaryOperator<Duration> scaleOperator) {
+    public ZonedDateTimeScaledClock(Clock clock,
+                                    UnaryOperator<Duration> scaleOperator) {
         this(clock, scaleOperator, ZonedDateTime.now(clock));
     }
 
@@ -38,25 +38,24 @@ class DateTimeScaledClock extends Clock {
         if (zone.equals(this.getZone())) {
             return this;
         }
-        return new DateTimeScaledClock(clock.withZone(zone), scaleOperator, dateTime);
+        return new ZonedDateTimeScaledClock(clock.withZone(zone), scaleOperator, timestamp0);
     }
 
-    private static ZonedDateTime getScaledZonedDateTime(ZonedDateTime dateTime0,
-                                                        ZonedDateTime dateTime1,
-                                                        UnaryOperator<Duration> scaleOperator) {
-        Duration duration = Duration.between(dateTime0, dateTime1);
+    private static ZonedDateTime getScaledTimestamp(ZonedDateTime timestamp0,
+                                                    ZonedDateTime timestamp1,
+                                                    UnaryOperator<Duration> scaleOperator) {
+        Duration duration = Duration.between(timestamp0, timestamp1);
         Duration scaledDuration = scaleOperator.apply(duration);
-
-        return dateTime0.plus(scaledDuration);
+        return timestamp0.plus(scaledDuration);
     }
 
-    public ZonedDateTime getScaledZonedDateTime(ZonedDateTime dateTime) {
-        return getScaledZonedDateTime(this.dateTime, dateTime, scaleOperator);
+    public ZonedDateTime getScaledTimestamp(ZonedDateTime timestamp1) {
+        return getScaledTimestamp(this.timestamp0, timestamp1, scaleOperator);
     }
 
     @Override
     public Instant instant() {
-        ZonedDateTime scaledDuration = getScaledZonedDateTime(ZonedDateTime.now(clock));
-        return scaledDuration.toInstant();
+        ZonedDateTime scaledTimestamp = getScaledTimestamp(ZonedDateTime.now(clock));
+        return scaledTimestamp.toInstant();
     }
 }

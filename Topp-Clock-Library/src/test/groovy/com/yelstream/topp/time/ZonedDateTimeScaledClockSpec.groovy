@@ -9,25 +9,25 @@ import java.time.ZonedDateTime
 
 /**
  * <p>
- * Test suite addressing {@link DateTimeScaledClock}.
+ * Test suite addressing {@link ZonedDateTimeScaledClock}.
  * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
  * @since 2021-12-21
  */
-class DateTimeScaledClockSpec extends Specification {
+class ZonedDateTimeScaledClockSpec extends Specification {
     @Unroll
     void "Verify basic scaling at selected granularities"() {
         given:
             Clock clock = Clock.systemDefaultZone()
-            ZonedDateTime initialDateTime = ZonedDateTime.now(clock)
+            ZonedDateTime initialTimestamp = ZonedDateTime.now(clock)
 
         when:
-            DateTimeScaledClock scaledClock = new DateTimeScaledClock(clock, scaleOperator, initialDateTime)
-            ZonedDateTime scaledDateTime = scaledClock.getScaledZonedDateTime(initialDateTime + durationToAdd)
+            ZonedDateTimeScaledClock scaledClock = new ZonedDateTimeScaledClock(clock, scaleOperator, initialTimestamp)
+            ZonedDateTime scaledDateTime = scaledClock.getScaledTimestamp(initialTimestamp + durationToAdd)
 
         then:
-            Duration duration = Duration.between(initialDateTime, scaledDateTime)
+            Duration duration = Duration.between(initialTimestamp, scaledDateTime)
             duration == expectedDuration
 
         where:
