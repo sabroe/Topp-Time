@@ -3,7 +3,9 @@ package com.yelstream.topp.time;
 import java.time.*;
 
 /**
+ * <p>
  * Utility addressing instances of {@link Clock}.
+ * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
  * @since 2021-12-19

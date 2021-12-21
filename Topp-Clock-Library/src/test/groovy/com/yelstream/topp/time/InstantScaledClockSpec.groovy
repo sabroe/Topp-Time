@@ -6,7 +6,9 @@ import spock.lang.Unroll
 import java.time.*
 
 /**
+ * <p>
  * Test suite addressing {@link InstantScaledClock}.
+ * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
  * @since 2021-12-21

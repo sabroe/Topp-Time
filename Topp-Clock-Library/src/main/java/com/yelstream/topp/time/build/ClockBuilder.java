@@ -10,7 +10,9 @@ import java.util.Arrays;
 import java.util.function.Function;
 
 /**
+ * <p>
  * Builder of {@link Clock} instances.
+ * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
  * @since 2021-12-19

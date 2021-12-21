@@ -5,7 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.Clock;
 
 /**
+ * <p>
  * Utility addressing instances of {@link ClockDeclaration}.
+ * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
  * @since 2021-12-19

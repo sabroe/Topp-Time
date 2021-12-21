@@ -10,7 +10,9 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * <p>
  * Utility addressing instances of {@link ClockBuilder}.
+ * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
  * @since 2021-12-19

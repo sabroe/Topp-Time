@@ -1,5 +1,6 @@
 package com.yelstream.topp.time.build;
 
+import com.yelstream.topp.time.InstantScaledClock;
 import com.yelstream.topp.time.declare.ClockDeclaration;
 
 import java.time.Clock;
@@ -9,6 +10,17 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
+/**
+ * <p>
+ * Ad-hoc demonstration.
+ * </p>
+ * <p>
+ * This is to be run manually.
+ * </p>
+ * @author Morten Sabroe Mortenen
+ * @version 1.0
+ * @since 2021-12-21
+ */
 public class AdHocDemo {
     public static void main(final String[] args) {
         globalInstant = SystemClock.getSystemClock().instant();

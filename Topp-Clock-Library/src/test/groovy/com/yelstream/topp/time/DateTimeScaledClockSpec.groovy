@@ -8,7 +8,9 @@ import java.time.Duration
 import java.time.ZonedDateTime
 
 /**
+ * <p>
  * Test suite addressing {@link DateTimeScaledClock}.
+ * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
  * @since 2021-12-21

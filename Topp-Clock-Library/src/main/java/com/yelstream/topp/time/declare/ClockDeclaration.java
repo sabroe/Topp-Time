@@ -15,7 +15,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * <p>
  * Declaration of a {@link Clock} instance.
+ * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
  * @since 2021-12-19

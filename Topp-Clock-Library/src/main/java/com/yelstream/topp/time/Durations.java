@@ -11,7 +11,9 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 /**
+ * <p>
  * Utility addressing instances of {@link Duration}.
+ * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
  * @since 2021-12-19
