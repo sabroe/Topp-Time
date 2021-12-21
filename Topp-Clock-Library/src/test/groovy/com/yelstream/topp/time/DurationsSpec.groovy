@@ -1,4 +1,4 @@
-package com.yelstream.topp.time.build
+package com.yelstream.topp.time
 
 import com.yelstream.topp.time.Clocks
 import com.yelstream.topp.time.Durations
@@ -7,6 +7,12 @@ import spock.lang.Unroll
 
 import java.time.*
 
+/**
+ * Test suite addressing {@link Durations}.
+ * @author Morten Sabroe Mortenen
+ * @version 1.0
+ * @since 2021-12-19
+ */
 class DurationsSpec extends Specification {
     @Unroll
     void "Computing duration after calender date according to fixed clock"() {

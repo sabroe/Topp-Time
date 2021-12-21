@@ -1,6 +1,6 @@
 /*** FILE "settings.gradle" ***************************************************/
 
-rootProject.name = 'Java-Clock-Control'
+rootProject.name = 'Topp-Clock'
 
 include 'Topp-Clock-Library'
 
