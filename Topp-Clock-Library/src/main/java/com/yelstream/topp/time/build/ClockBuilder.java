@@ -23,6 +23,9 @@ import java.util.function.Function;
 public final class ClockBuilder {
     private ClockBuilder() { }
 
+    /**
+     *
+     */
     public enum Factory {
         /**
          * System default clocks, no dedicated parameters.
@@ -87,10 +90,19 @@ public final class ClockBuilder {
         private final String factoryName;
         private final Function<ClockBuilder, Clock> creator;
 
+        /**
+         * Gets the factory name.
+         * @return Factory name
+         */
         public String factoryName() {
             return factoryName;
         }
 
+        /**
+         * Creates a clock from a builder.
+         * @param builder Clock builder.
+         * @return Clock.
+         */
         public Clock createClock(ClockBuilder builder) {
             Clock clock = creator.apply(builder);
             clock = decorateBaseClock(builder, clock);
@@ -110,6 +122,11 @@ public final class ClockBuilder {
             return clock;
         }
 
+        /**
+         * Gets a factory by factory name.
+         * @param factoryName Factory name
+         * @return Factory.
+         */
         public static Factory valueByFactoryName(String factoryName) {
             return Arrays.stream(values()).filter(value -> factoryName.equalsIgnoreCase(value.factoryName)).findFirst().orElse(null);
         }
@@ -122,10 +139,18 @@ public final class ClockBuilder {
     private Duration offsetDuration;
     private Duration tickDuration;
 
+    /**
+     * Builds the final clock.
+     * @return Built clock.
+     */
     public Clock build() {
         return factory.createClock(this);
     }
 
+    /**
+     * Creates a new builder instance.
+     * @return New builder instance.
+     */
     public static ClockBuilder newInstance() {
         return new ClockBuilder();
     }

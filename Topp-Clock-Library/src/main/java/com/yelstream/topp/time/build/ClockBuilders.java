@@ -21,7 +21,14 @@ import java.util.Set;
 public class ClockBuilders {
     private ClockBuilders() {}
 
-    public static ClockBuilder of(String factoryName, Map<String, String> factoryArgumentMap) {
+    /**
+     * Creates a new clock builder.
+     * @param factoryName Clock builder factory name.
+     * @param factoryArgumentMap Factory argument map.
+     * @return Clock builder.
+     */
+    public static ClockBuilder of(String factoryName,
+                                  Map<String, String> factoryArgumentMap) {
         log.debug("Clock builder creation from factory name {} and factory arguments {}.", factoryName, factoryArgumentMap);
         ClockBuilder.Factory factory = ClockBuilder.Factory.valueByFactoryName(factoryName);
         if (factory == null) {
@@ -31,7 +38,14 @@ public class ClockBuilders {
         return of(factory, factoryArgumentMap);
     }
 
-    public static ClockBuilder of(ClockBuilder.Factory factory, Map<String, String> factoryArgumentMap) {
+    /**
+     * Creates a new clock builder.
+     * @param factory Clock builder factory.
+     * @param factoryArgumentMap Factory argument map.
+     * @return Clock builder.
+     */
+    public static ClockBuilder of(ClockBuilder.Factory factory,
+                                  Map<String, String> factoryArgumentMap) {
         log.debug("Clock builder creation from factory {} and factory arguments {}.", factory, factoryArgumentMap);
 
         ClockBuilder builder = ClockBuilder.newInstance();

@@ -23,6 +23,11 @@ public class InstantScaledClock extends Clock {
     private final UnaryOperator<Duration> scaleOperator;
     private final Instant timestamp0;
 
+    /**
+     * Constructor.
+     * @param clock Reference clock.
+     * @param scaleOperator Function defining how to scale time.
+     */
     public InstantScaledClock(Clock clock,
                               UnaryOperator<Duration> scaleOperator) {
         this(clock, scaleOperator, Instant.now(clock));
@@ -49,6 +54,11 @@ public class InstantScaledClock extends Clock {
         return timestamp0.plus(scaledDuration);
     }
 
+    /**
+     * Gets a timestamp adjusted by scaling according to the reference clock and the scale operator.
+     * @param timestamp1 Timestamp relative to reference clock and to be adjusted.
+     * @return Adjusted timestamp.
+     */
     public Instant getScaledTimestamp(Instant timestamp1) {
         return getScaledTimestamp(this.timestamp0, timestamp1, scaleOperator);
     }

@@ -1,9 +1,10 @@
 plugins {
     id 'java-library-distribution'
     id 'groovy'
+    id 'maven-publish'
 }
 
-version = '0.0.1-SNAPSHOT'
+version = '0.5.0'
 
 test {
     systemProperty "org.slf4j.simpleLogger.defaultLogLevel", "debug"
@@ -24,4 +25,71 @@ dependencies {
 
     testImplementation 'org.codehaus.groovy:groovy:3.0.9'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+}
+
+//https://docs.gradle.org/current/userguide/publishing_maven.html
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.yelstream'
+            artifactId = 'topp-clock'
+            version = '0.5'
+
+            from components.java
+        }
+
+        mavenJava(MavenPublication) {
+//            artifactId = 'Topp-Clock-${version}'
+            artifactId = 'Yelstream-Topp-Clock'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'My Topp-Clock Library'
+                description = 'A concise description of my library'
+                url = 'http://www.example.com/library'
+                properties = [
+                        myProp          : "value",
+                        "prop.with.dots": "anotherValue"
+                ]
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'sabroe'
+                        name = 'Morten Sabroe Mortensen'
+                        email = 'morten.sabroe.mortensen@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://example.com/my-library.git'
+                    developerConnection = 'scm:git:ssh://example.com/my-library.git'
+                    url = 'http://example.com/my-library/'
+                }
+            }
+        }
+    }
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            url = layout.buildDirectory.dir('repo')
+        }
+    }
+
 }

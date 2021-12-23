@@ -30,6 +30,10 @@ public class ClockDeclaration {
     @Getter
     private final String declaration;
 
+    /**
+     * Parses the declaration and creates a matching clock instance.
+     * @return Clock.
+     */
     public Clock toClock() {
         return parse(declaration);
     }
@@ -39,14 +43,14 @@ public class ClockDeclaration {
     private static final String ARGUMENT_VALUE_REGEX = "([\\p{Print}&&[^,]]*)";
     private static final String ARGUMENT_REGEX = ARGUMENT_NAME_REGEX + "=" + ARGUMENT_VALUE_REGEX;
 
-    public static final String FACTORY_NAME_GROUP_NAME = "factoryName";
-    public static final String FACTORY_ARGUMENTS_GROUP_NAME = "factoryArguments";
-    public static final String CLOCK_DEFINITION_REGEX = "^" + namedGroup(FACTORY_NAME_GROUP_NAME, FACTORY_NAME_REGEX) + "([(]" + namedGroup(FACTORY_ARGUMENTS_GROUP_NAME, ARGUMENT_REGEX + "([,]" + ARGUMENT_REGEX + ")*") + "?" + "[)])?" + "$";
-    public static final Pattern CLOCK_DEFINITION_PATTERN = Pattern.compile(CLOCK_DEFINITION_REGEX);
+    private static final String FACTORY_NAME_GROUP_NAME = "factoryName";
+    private static final String FACTORY_ARGUMENTS_GROUP_NAME = "factoryArguments";
+    private static final String CLOCK_DEFINITION_REGEX = "^" + namedGroup(FACTORY_NAME_GROUP_NAME, FACTORY_NAME_REGEX) + "([(]" + namedGroup(FACTORY_ARGUMENTS_GROUP_NAME, ARGUMENT_REGEX + "([,]" + ARGUMENT_REGEX + ")*") + "?" + "[)])?" + "$";
+    private static final Pattern CLOCK_DEFINITION_PATTERN = Pattern.compile(CLOCK_DEFINITION_REGEX);
 
-    public static final String ARGUMENT_GROUP_NAME = "argument";
-    public static final String ARGUMENT_NAME_GROUP_NAME = "name";
-    public static final String ARGUMENT_VALUE_GROUP_NAME = "value";
+    private static final String ARGUMENT_GROUP_NAME = "argument";
+    private static final String ARGUMENT_NAME_GROUP_NAME = "name";
+    private static final String ARGUMENT_VALUE_GROUP_NAME = "value";
     private static final String ARGUMENT_ARGUMENTS_REGEX = namedGroup(ARGUMENT_GROUP_NAME, namedGroup(ARGUMENT_NAME_GROUP_NAME, ARGUMENT_NAME_REGEX) + "=" + namedGroup(ARGUMENT_VALUE_GROUP_NAME, ARGUMENT_VALUE_REGEX));
     private static final Pattern ARGUMENT_PATTERN = Pattern.compile(ARGUMENT_ARGUMENTS_REGEX);
 
