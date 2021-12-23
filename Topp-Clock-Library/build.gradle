@@ -28,6 +28,7 @@ dependencies {
 }
 
 //https://docs.gradle.org/current/userguide/publishing_maven.html
+//https://dzone.com/articles/how-to-publish-artifacts-to-maven-central
 publishing {
     publications {
         maven(MavenPublication) {
