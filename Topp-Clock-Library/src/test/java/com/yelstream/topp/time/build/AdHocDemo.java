@@ -17,9 +17,9 @@ import java.time.*;
  */
 public class AdHocDemo {
     public static void main(final String[] args) {
-        globalInstant = SystemClock.getSystemClock().instant();
+        globalInstant = Clock.systemDefaultZone().instant();
 
-        showClock("SystemClock", SystemClock.getSystemClock());
+        showClock("SystemClock", Clock.systemDefaultZone());
 
         showClock("ClockBuilder, systemInDefaultZone", createClock("systemInDefaultZone"));
         showClock("ClockBuilder, systemInZoneUTC", createClock("systemInZoneUTC"));
