@@ -41,7 +41,7 @@ public class ClockDeclaration {
     private static final String FACTORY_NAME_REGEX = "([\\w]+)";
     private static final String ARGUMENT_NAME_REGEX = "([\\w]+)";
     private static final String ARGUMENT_VALUE_REGEX = "([\\p{Print}&&[^,]]*)";
-    private static final String ARGUMENT_REGEX = ARGUMENT_NAME_REGEX + "=" + ARGUMENT_VALUE_REGEX;
+    private static final String ARGUMENT_REGEX = ARGUMENT_NAME_REGEX + "(=" + ARGUMENT_VALUE_REGEX +")?";
 
     private static final String FACTORY_NAME_GROUP_NAME = "factoryName";
     private static final String FACTORY_ARGUMENTS_GROUP_NAME = "factoryArguments";
@@ -51,11 +51,20 @@ public class ClockDeclaration {
     private static final String ARGUMENT_GROUP_NAME = "argument";
     private static final String ARGUMENT_NAME_GROUP_NAME = "name";
     private static final String ARGUMENT_VALUE_GROUP_NAME = "value";
-    private static final String ARGUMENT_ARGUMENTS_REGEX = namedGroup(ARGUMENT_GROUP_NAME, namedGroup(ARGUMENT_NAME_GROUP_NAME, ARGUMENT_NAME_REGEX) + "=" + namedGroup(ARGUMENT_VALUE_GROUP_NAME, ARGUMENT_VALUE_REGEX));
+    private static final String ARGUMENT_ARGUMENTS_REGEX = namedGroup(ARGUMENT_GROUP_NAME, namedGroup(ARGUMENT_NAME_GROUP_NAME, ARGUMENT_NAME_REGEX) + "(=" + namedGroup(ARGUMENT_VALUE_GROUP_NAME, ARGUMENT_VALUE_REGEX) +")?");
     private static final Pattern ARGUMENT_PATTERN = Pattern.compile(ARGUMENT_ARGUMENTS_REGEX);
 
     private static String namedGroup(String group, String regEx) {
         return String.format("(?<%s>%s)", group, regEx);
+    }
+
+    /**
+     * Creates a clock.
+     * @param declaration Clock declaration.
+     * @return Clock.
+     */
+    public static Clock createClock(String declaration) {
+        return parse(declaration);
     }
 
     private static Clock parse(String declaration) {

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.UnaryOperator;
 
 /**
  * <p>
@@ -69,13 +70,28 @@ public class ClockBuilders {
                         LocalDateTime localDateTime = LocalDateTime.parse(value);
                         builder.setLocalDateTime(localDateTime);
                     }
-                    case "offsetDuration" -> {
+                    case "offsetDuration", "offset" -> {
                         Duration offsetDuration = Duration.parse(value);
                         builder.setOffsetDuration(offsetDuration);
                     }
-                    case "tickDuration" -> {
+                    case "tickDuration", "tick" -> {
                         Duration tickDuration = Duration.parse(value);
                         builder.setTickDuration(tickDuration);
+                    }
+                    case "scale.multiplyBy", "multiplyBy" -> {
+                        UnaryOperator<Duration> scaleOperator = builder.getScaleOperator() == null ? UnaryOperator.identity() : builder.getScaleOperator();
+                        builder.setScaleOperator(duration -> scaleOperator.apply(duration).multipliedBy(Long.parseLong(value)));
+                    }
+                    case "scale.divideBy", "divideBy" -> {
+                        UnaryOperator<Duration> scaleOperator = builder.getScaleOperator() == null ? UnaryOperator.identity() : builder.getScaleOperator();
+                        builder.setScaleOperator(duration -> scaleOperator.apply(duration).dividedBy(Long.parseLong(value)));
+                    }
+                    case "scale.negate", "negate" -> {
+                        UnaryOperator<Duration> scaleOperator = builder.getScaleOperator() == null ? UnaryOperator.identity() : builder.getScaleOperator();
+                        builder.setScaleOperator(duration -> scaleOperator.apply(duration).negated());
+                    }
+                    case "adjustable" -> {
+                        builder.setAdjustable(value==null ? Boolean.TRUE : Boolean.valueOf(value));
                     }
                     default -> throw new IllegalArgumentException(String.format("Failure to create clock builder; cannot recognize factory argument %s, factory arguments are %s.", key, factoryArgumentMap));
                 }

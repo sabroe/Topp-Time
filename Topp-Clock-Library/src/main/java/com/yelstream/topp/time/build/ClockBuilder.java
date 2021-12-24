@@ -1,6 +1,8 @@
 package com.yelstream.topp.time.build;
 
+import com.yelstream.topp.time.AdjustableClock;
 import com.yelstream.topp.time.Clocks;
+import com.yelstream.topp.time.InstantScaledClock;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.*;
 import java.util.Arrays;
 import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 /**
  * <p>
@@ -119,6 +122,18 @@ public final class ClockBuilder {
                 clock = Clock.tick(clock, builder.tickDuration);
                 log.debug("Modified base clock to tick in adjustments of {}.", builder.tickDuration);
             }
+            if (builder.scaleOperator != null) {
+                if (builder.instant == null) {
+                    clock = new InstantScaledClock(clock, builder.scaleOperator);
+                } else {
+                   clock = new InstantScaledClock(clock, builder.scaleOperator, builder.instant);
+                }
+                log.debug("Modified base clock to scale using the operator {}.", builder.scaleOperator);
+            }
+            if (builder.adjustable != null) {
+                clock = new AdjustableClock(clock);
+                log.debug("Modified base clock by allowing adjustment using the direction {}.", builder.adjustable);
+            }
             return clock;
         }
 
@@ -138,6 +153,8 @@ public final class ClockBuilder {
     private LocalDateTime localDateTime;
     private Duration offsetDuration;
     private Duration tickDuration;
+    private UnaryOperator<Duration> scaleOperator;
+    private Boolean adjustable;
 
     /**
      * Builds the final clock.

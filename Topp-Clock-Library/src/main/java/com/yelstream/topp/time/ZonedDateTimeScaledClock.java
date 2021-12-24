@@ -1,6 +1,8 @@
 package com.yelstream.topp.time;
 
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.time.*;
 import java.util.function.UnaryOperator;
@@ -17,6 +19,8 @@ import java.util.function.UnaryOperator;
  * @since 2021-12-21
  */
 @RequiredArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString
 public class ZonedDateTimeScaledClock extends Clock {
 
     private final Clock clock;
