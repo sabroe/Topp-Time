@@ -1,4 +1,4 @@
-package com.yelstream.topp.time.build;
+package com.yelstream.topp.time.example;
 
 import com.yelstream.topp.time.Clocks;
 import com.yelstream.topp.time.declare.ClockDeclaration;
