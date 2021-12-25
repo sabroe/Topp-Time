@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 /**
  * <p>
- * Declaration of a {@link Clock} instance.
+ *   Declaration of a {@link Clock} instance.
  * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
@@ -84,12 +84,12 @@ public class ClockDeclaration {
             }
             clockBuilder = ClockBuilders.of(factoryName, factoryArgumentMap);
         }
-        log.info("Parsing of clock declaration {} completed.", declaration);
+        log.debug("Parsing of clock declaration {} completed.", declaration);
         return clockBuilder.build();
     }
 
     private static Map<String, String> parseFactoryArguments(String factoryArguments) {
-        Map<String, String> factoryArgumentMap = new LinkedHashMap<>();  //Yes, keep the keys in the order they were inserted!
+        Map<String, String> factoryArgumentMap = new LinkedHashMap<>();  //Yes, keep the keys in                                                                                   the order they were inserted!
         Matcher matcher = ARGUMENT_PATTERN.matcher(factoryArguments);
         int start = 0;
         while (matcher.find(start)) {

@@ -9,10 +9,10 @@ import java.util.function.UnaryOperator;
 
 /**
  * <p>
- * Clock running at a speed scaled relative to a reference clock.
+ *   Clock running at a speed scaled relative to a reference clock.
  * </p>
  * <p>
- * This finds scaled differences by indirect computation as durations between instances of {@link ZonedDateTime}.
+ *   This finds scaled differences by indirect computation as durations between instances of {@link ZonedDateTime}.
  * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0

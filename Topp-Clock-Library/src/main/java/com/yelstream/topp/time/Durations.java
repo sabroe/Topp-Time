@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 
 /**
  * <p>
- * Utility addressing instances of {@link Duration}.
+ *   Utility addressing instances of {@link Duration}.
  * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0

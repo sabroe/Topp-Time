@@ -14,7 +14,7 @@ import java.util.function.UnaryOperator;
 
 /**
  * <p>
- * Builder of {@link Clock} instances.
+ *   Builder of {@link Clock} instances.
  * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0

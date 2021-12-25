@@ -12,7 +12,7 @@ import java.util.function.UnaryOperator;
 
 /**
  * <p>
- * Utility addressing instances of {@link ClockBuilder}.
+ *   Utility addressing instances of {@link ClockBuilder}.
  * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0

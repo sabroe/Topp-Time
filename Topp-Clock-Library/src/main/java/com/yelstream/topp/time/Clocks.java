@@ -4,7 +4,7 @@ import java.time.*;
 
 /**
  * <p>
- * Utility addressing instances of {@link Clock}.
+ *   Utility addressing instances of {@link Clock}.
  * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0

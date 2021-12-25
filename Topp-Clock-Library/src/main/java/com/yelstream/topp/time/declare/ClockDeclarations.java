@@ -6,7 +6,7 @@ import java.time.Clock;
 
 /**
  * <p>
- * Utility addressing instances of {@link ClockDeclaration}.
+ *   Utility addressing instances of {@link ClockDeclaration}.
  * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0

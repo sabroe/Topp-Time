@@ -10,11 +10,11 @@ import java.util.function.UnaryOperator;
 
 /**
  * <p>
- * Adjustable clock.
- * This allows for the modification of the timestamps coming from another clock.
+ *   Adjustable clock.
+ *   This allows for the modification of the timestamps coming from another clock.
  * </p>
  * <p>
- * This does not touch upon the timezone which is fixed.s
+ *   This does not touch upon the timezone which is fixed.s
  * </p>
  * @author Morten Sabroe Mortenen
  * @version 1.0
