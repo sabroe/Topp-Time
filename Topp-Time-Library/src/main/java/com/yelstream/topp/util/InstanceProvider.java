@@ -36,18 +36,18 @@ public final class InstanceProvider<T> implements Supplier<T> {
      * @param instanceFactory Factory of the provided object instance.
      */
     public InstanceProvider(Supplier<T> instanceFactory) {
-        this.instanceFactory = instanceFactory;
+        this.instanceFactory=instanceFactory;
     }
 
     @Override
     public T get() {
-        Holder<T> holder = this.instanceHolder;
+        Holder<T> holder=this.instanceHolder;
         if (holder == null) {
             synchronized (this) {
-                holder = this.instanceHolder;
+                holder=this.instanceHolder;
                 if (holder == null) {
-                    holder = new Holder<>(instanceFactory.get());
-                    this.instanceHolder = holder;
+                    holder=new Holder<>(instanceFactory.get());
+                    this.instanceHolder=holder;
                 }
             }
         }

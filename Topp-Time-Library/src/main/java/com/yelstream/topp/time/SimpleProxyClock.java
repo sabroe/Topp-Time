@@ -14,7 +14,7 @@ import java.time.Clock;
  */
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 @ToString
 public class SimpleProxyClock extends AbstractProxyClock {
     @Getter

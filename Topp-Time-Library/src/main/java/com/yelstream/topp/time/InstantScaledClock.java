@@ -22,7 +22,7 @@ import java.util.function.UnaryOperator;
  * @since 2021-12-21
  */
 @RequiredArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 @ToString
 public class InstantScaledClock extends Clock {
 
@@ -56,8 +56,8 @@ public class InstantScaledClock extends Clock {
     private static Instant getScaledTimestamp(Instant timestamp0,
                                               Instant timestamp1,
                                               UnaryOperator<Duration> scaleOperator) {
-        Duration duration = Duration.between(timestamp0, timestamp1);
-        Duration scaledDuration = scaleOperator.apply(duration);
+        Duration duration=Duration.between(timestamp0, timestamp1);
+        Duration scaledDuration=scaleOperator.apply(duration);
         return timestamp0.plus(scaledDuration);
     }
 

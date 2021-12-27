@@ -19,7 +19,7 @@ import java.util.function.UnaryOperator;
  * @since 2021-12-21
  */
 @RequiredArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 @ToString
 public class ZonedDateTimeScaledClock extends Clock {
 
@@ -53,8 +53,8 @@ public class ZonedDateTimeScaledClock extends Clock {
     private static ZonedDateTime getScaledTimestamp(ZonedDateTime timestamp0,
                                                     ZonedDateTime timestamp1,
                                                     UnaryOperator<Duration> scaleOperator) {
-        Duration duration = Duration.between(timestamp0, timestamp1);
-        Duration scaledDuration = scaleOperator.apply(duration);
+        Duration duration=Duration.between(timestamp0, timestamp1);
+        Duration scaledDuration=scaleOperator.apply(duration);
         return timestamp0.plus(scaledDuration);
     }
 
@@ -69,7 +69,7 @@ public class ZonedDateTimeScaledClock extends Clock {
 
     @Override
     public Instant instant() {
-        ZonedDateTime scaledTimestamp = getScaledTimestamp(ZonedDateTime.now(clock));
+        ZonedDateTime scaledTimestamp=getScaledTimestamp(ZonedDateTime.now(clock));
         return scaledTimestamp.toInstant();
     }
 }

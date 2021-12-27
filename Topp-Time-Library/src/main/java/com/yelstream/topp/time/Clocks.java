@@ -54,7 +54,7 @@ public final class Clocks {
      * @return Fixed clock in the specified zone.
      */
     public static Clock createClockFixedInDefaultZone(Instant fixedInstant) {
-        ZoneId zoneId = ZoneId.systemDefault();
+        ZoneId zoneId=ZoneId.systemDefault();
         return Clock.fixed(fixedInstant, zoneId);
     }
 
@@ -64,7 +64,7 @@ public final class Clocks {
      * @return Fixed clock in the UTC zone.
      */
     public static Clock createClockFixedInZoneUTC(Instant fixedInstant) {
-        ZoneOffset zoneOffset = ZoneOffset.UTC;
+        ZoneOffset zoneOffset=ZoneOffset.UTC;
         return Clock.fixed(fixedInstant, zoneOffset);
     }
 
@@ -75,8 +75,8 @@ public final class Clocks {
      * @return Fixed clock in the specified zone.
      */
     public static Clock createClockFixedAtTime(ZonedDateTime fixedZonedDateTime) {
-        Instant instant = fixedZonedDateTime.toInstant();
-        ZoneId zoneId = fixedZonedDateTime.getZone();
+        Instant instant=fixedZonedDateTime.toInstant();
+        ZoneId zoneId=fixedZonedDateTime.getZone();
         return Clock.fixed(instant, zoneId);
     }
 
@@ -88,8 +88,8 @@ public final class Clocks {
      * @return Fixed clock in the specified zone.
      */
     public static Clock createClockFixedAtTime(LocalDateTime fixedLocalDateTime, ZoneId zoneId) {
-        ZonedDateTime zonedDateTime = ZonedDateTime.of(fixedLocalDateTime, zoneId);
-        Instant instant = zonedDateTime.toInstant();
+        ZonedDateTime zonedDateTime=ZonedDateTime.of(fixedLocalDateTime, zoneId);
+        Instant instant=zonedDateTime.toInstant();
         return Clock.fixed(instant, zoneId);
     }
 
@@ -99,7 +99,7 @@ public final class Clocks {
      * @return Fixed clock in the default zone.
      */
     public static Clock createClockFixedAtTimeInDefaultZone(LocalDateTime fixedLocalDateTime) {
-        ZoneId zoneId = ZoneId.systemDefault();
+        ZoneId zoneId=ZoneId.systemDefault();
         return createClockFixedAtTime(fixedLocalDateTime, zoneId);
     }
 
@@ -111,10 +111,10 @@ public final class Clocks {
      * @return Fixed clock starting at an offset duration relative to an existing clock.
      */
     public static Clock createClockStartingAtTime(LocalDateTime startLocalDateTime, ZoneId zoneId, Clock clock) {
-        Instant instant0 = clock.instant();
-        ZonedDateTime startZonedDateTime = ZonedDateTime.of(startLocalDateTime, zoneId);
-        Instant instant1 = startZonedDateTime.toInstant();
-        Duration offsetDuration = Duration.between(instant0, instant1);
+        Instant instant0=clock.instant();
+        ZonedDateTime startZonedDateTime=ZonedDateTime.of(startLocalDateTime, zoneId);
+        Instant instant1=startZonedDateTime.toInstant();
+        Duration offsetDuration=Duration.between(instant0, instant1);
         return Clock.offset(clock, offsetDuration);
     }
 
@@ -125,9 +125,9 @@ public final class Clocks {
      * @return Fixed clock starting at an offset duration relative to an existing clock.
      */
     public static Clock createClockStartingAtTime(ZonedDateTime startZonedDateTime, Clock clock) {
-        Instant instant0 = clock.instant();
-        Instant instant1 = startZonedDateTime.toInstant();
-        Duration offsetDuration = Duration.between(instant0, instant1);
+        Instant instant0=clock.instant();
+        Instant instant1=startZonedDateTime.toInstant();
+        Duration offsetDuration=Duration.between(instant0, instant1);
         return Clock.offset(clock, offsetDuration);
     }
 
@@ -138,7 +138,7 @@ public final class Clocks {
      * @return Fixed clock starting at an offset duration relative to the default clock.
      */
     public static Clock createClockStartingAtTime(LocalDateTime startLocalDateTime, ZoneId zoneId) {
-        Clock clock = Clock.system(zoneId);
+        Clock clock=Clock.system(zoneId);
         return createClockStartingAtTime(startLocalDateTime, zoneId, clock);
     }
 
@@ -149,8 +149,8 @@ public final class Clocks {
      * @return Fixed clock starting at an offset duration relative to the default clock in the default zone.
      */
     public static Clock createClockStartingAtTime(LocalDateTime startLocalDateTime) {
-        ZoneId zoneId = ZoneId.systemDefault();
-        Clock clock = Clock.system(zoneId);
+        ZoneId zoneId=ZoneId.systemDefault();
+        Clock clock=Clock.system(zoneId);
         return createClockStartingAtTime(startLocalDateTime, zoneId, clock);
     }
 }

@@ -30,7 +30,7 @@ import java.util.function.UnaryOperator;
 @Slf4j
 @AllArgsConstructor
 @Getter
-@Builder(builderClassName = "Builder", toBuilder = true)
+@Builder(builderClassName="Builder", toBuilder=true)
 public final class ClockConfiguration {
 
     private final ClockOrigin origin;
@@ -59,7 +59,7 @@ public final class ClockConfiguration {
                     throw new IllegalStateException(String.format("Failure to create clock builder; base clock origin is %s, values 'instant' and 'localDateTime' may not both be set!",origin));
                 }
                 if (instant!=null) {
-                    if (zone != null) {
+                    if (zone!=null) {
                         baseClock=Clocks.createClockFixedInZone(instant, zone);
                     } else {
                         baseClock=Clocks.createClockFixedInDefaultZone(instant);
@@ -87,25 +87,25 @@ public final class ClockConfiguration {
     }
 
     private Clock decorateBaseClock(Clock baseClock) {
-        Clock clock = baseClock;
-        if (offsetDuration != null) {
-            clock = Clock.offset(clock, offsetDuration);
+        Clock clock=baseClock;
+        if (offsetDuration!=null) {
+            clock=Clock.offset(clock, offsetDuration);
             log.debug("Modified base clock by adding the offset {}.", offsetDuration);
         }
-        if (tickDuration != null) {
-            clock = Clock.tick(clock, tickDuration);
+        if (tickDuration!=null) {
+            clock=Clock.tick(clock, tickDuration);
             log.debug("Modified base clock to tick in adjustments of {}.", tickDuration);
         }
-        if (scaleOperator != null) {
+        if (scaleOperator!=null) {
             if (instant == null) {
-                clock = new InstantScaledClock(clock, scaleOperator);
+                clock=new InstantScaledClock(clock, scaleOperator);
             } else {
-                clock = new InstantScaledClock(clock, scaleOperator, instant);
+                clock=new InstantScaledClock(clock, scaleOperator, instant);
             }
             log.debug("Modified base clock to scale using the operator {}.", scaleOperator);
         }
-        if (adjustable != null) {
-            clock = new AdjustableClock(clock);
+        if (adjustable!=null) {
+            clock=new AdjustableClock(clock);
             log.debug("Modified base clock by allowing adjustment using the direction {}.", adjustable);
         }
         return clock;
@@ -116,8 +116,8 @@ public final class ClockConfiguration {
      * @return Matching clock.
      */
     public Clock toClock() {
-        Clock clock = createBaseClock();
-        clock = decorateBaseClock(clock);
+        Clock clock=createBaseClock();
+        clock=decorateBaseClock(clock);
         return clock;
     }
 

@@ -15,7 +15,7 @@ import java.util.function.Supplier;
  */
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 @ToString
 public class LazyInitializedProxyClock extends AbstractProxyClock {
     @Getter
@@ -23,5 +23,5 @@ public class LazyInitializedProxyClock extends AbstractProxyClock {
     private Supplier<Clock> clockFactory;
 
     @Getter(lazy=true)
-    private final Clock clock = clockFactory.get();
+    private final Clock clock=clockFactory.get();
 }

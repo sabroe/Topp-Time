@@ -22,7 +22,7 @@ import java.util.function.UnaryOperator;
  */
 @RequiredArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 @ToString
 public class AdjustableClock extends Clock {
 
@@ -66,9 +66,9 @@ public class AdjustableClock extends Clock {
 
     private static Instant getAdjustedTimestamp(Instant timestamp,
                                                 UnaryOperator<Instant> adjustmentOperator) {
-        Instant adjustedTimestamp = timestamp;
-        if (adjustmentOperator != null) {
-            adjustedTimestamp = adjustmentOperator.apply(adjustedTimestamp);
+        Instant adjustedTimestamp=timestamp;
+        if (adjustmentOperator!=null) {
+            adjustedTimestamp=adjustmentOperator.apply(adjustedTimestamp);
         }
         return adjustedTimestamp;
     }

@@ -17,7 +17,7 @@ import java.util.function.Supplier;
  * @since 2021-12-25
  */
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 @ToString
 public class LazyInitializedProxyClock0 extends AbstractProxyClock {
     private InstanceProvider<Clock> instanceProvider;
@@ -27,7 +27,7 @@ public class LazyInitializedProxyClock0 extends AbstractProxyClock {
      * @param clockFactory Factory for creating the wrapped clock instance.
      */
     public LazyInitializedProxyClock0(Supplier<Clock> clockFactory) {
-        this.instanceProvider = new InstanceProvider<>(clockFactory);
+        this.instanceProvider=new InstanceProvider<>(clockFactory);
     }
 
     /**
@@ -36,7 +36,7 @@ public class LazyInitializedProxyClock0 extends AbstractProxyClock {
      * @param clockFactory Factory for creating the wrapped clock instance.
      */
     public void setClockFactory(Supplier<Clock> clockFactory) {
-        this.instanceProvider = new InstanceProvider<>(clockFactory);
+        this.instanceProvider=new InstanceProvider<>(clockFactory);
     }
 
     @Override

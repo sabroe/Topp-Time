@@ -30,8 +30,8 @@ public final class Durations {
      */
     public static Duration getDurationFromStartDateExclusive(LocalDate startLocalDateExclusive,
                                                              Clock clock) {
-        LocalDateTime startLocalDateTimeInclusive = startLocalDateExclusive.plusDays(1).atStartOfDay();
-        ZonedDateTime startZonedDateTimeInclusive = ZonedDateTime.of(startLocalDateTimeInclusive, clock.getZone());
+        LocalDateTime startLocalDateTimeInclusive=startLocalDateExclusive.plusDays(1).atStartOfDay();
+        ZonedDateTime startZonedDateTimeInclusive=ZonedDateTime.of(startLocalDateTimeInclusive, clock.getZone());
         return getDuration(startZonedDateTimeInclusive, clock);
     }
 
@@ -43,7 +43,7 @@ public final class Durations {
      */
     public static Duration getDuration(ZonedDateTime startZonedDateTimeInclusive,
                                        Clock clock) {
-        ZonedDateTime endZonedDateTimeExclusive = ZonedDateTime.now(clock);
+        ZonedDateTime endZonedDateTimeExclusive=ZonedDateTime.now(clock);
         return Duration.between(startZonedDateTimeInclusive, endZonedDateTimeExclusive);
     }
 
@@ -57,8 +57,8 @@ public final class Durations {
     public static Duration getDurationFromStartDateExclusive(LocalDate startLocalDateExclusive,
                                                              ZoneId zoneId,
                                                              Instant endInstantExclusive) {
-        LocalDateTime startLocalDateTimeInclusive = startLocalDateExclusive.plusDays(1).atStartOfDay();
-        ZonedDateTime startZonedDateTimeInclusive = ZonedDateTime.of(startLocalDateTimeInclusive, zoneId);
+        LocalDateTime startLocalDateTimeInclusive=startLocalDateExclusive.plusDays(1).atStartOfDay();
+        ZonedDateTime startZonedDateTimeInclusive=ZonedDateTime.of(startLocalDateTimeInclusive, zoneId);
         return getDuration(startZonedDateTimeInclusive, endInstantExclusive);
     }
 
@@ -70,8 +70,8 @@ public final class Durations {
      */
     public static Duration getDuration(ZonedDateTime startZonedDateTimeInclusive,
                                        Instant endInstantExclusive) {
-        ZoneId zoneId = startZonedDateTimeInclusive.getZone();
-        ZonedDateTime endDateTimeExclusive = ZonedDateTime.ofInstant(endInstantExclusive, zoneId);
+        ZoneId zoneId=startZonedDateTimeInclusive.getZone();
+        ZonedDateTime endDateTimeExclusive=ZonedDateTime.ofInstant(endInstantExclusive, zoneId);
         return Duration.between(startZonedDateTimeInclusive, endDateTimeExclusive);
     }
 }
