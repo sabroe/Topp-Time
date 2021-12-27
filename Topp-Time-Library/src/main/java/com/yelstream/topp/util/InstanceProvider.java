@@ -33,7 +33,7 @@ public final class InstanceProvider<T> implements Supplier<T> {
 
     /**
      * Constructor.
-     * @param instanceFactory Factory of thje provided object instance.
+     * @param instanceFactory Factory of the provided object instance.
      */
     public InstanceProvider(Supplier<T> instanceFactory) {
         this.instanceFactory = instanceFactory;

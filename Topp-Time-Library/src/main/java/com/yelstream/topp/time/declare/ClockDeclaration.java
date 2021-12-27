@@ -1,7 +1,6 @@
 package com.yelstream.topp.time.declare;
 
-import com.yelstream.topp.time.build.ClockBuilder;
-import com.yelstream.topp.time.build.ClockBuilders;
+import com.yelstream.topp.time.build.ClockConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -38,14 +37,14 @@ public class ClockDeclaration {
         return parse(declaration);
     }
 
-    private static final String FACTORY_NAME_REGEX = "([\\w]+)";
+    private static final String CLOCK_ORIGIN_NAME_REGEX = "([\\w]+)";
     private static final String ARGUMENT_NAME_REGEX = "([\\w]+)";
     private static final String ARGUMENT_VALUE_REGEX = "([\\p{Print}&&[^,]]*)";
     private static final String ARGUMENT_REGEX = ARGUMENT_NAME_REGEX + "(=" + ARGUMENT_VALUE_REGEX +")?";
 
-    private static final String FACTORY_NAME_GROUP_NAME = "factoryName";
-    private static final String FACTORY_ARGUMENTS_GROUP_NAME = "factoryArguments";
-    private static final String CLOCK_DEFINITION_REGEX = "^" + namedGroup(FACTORY_NAME_GROUP_NAME, FACTORY_NAME_REGEX) + "([(]" + namedGroup(FACTORY_ARGUMENTS_GROUP_NAME, ARGUMENT_REGEX + "([,]" + ARGUMENT_REGEX + ")*") + "?" + "[)])?" + "$";
+    private static final String CLOCK_ORIGIN_NAME_GROUP_NAME = "clockOriginName";
+    private static final String ARGUMENTS_GROUP_NAME = "arguments";
+    private static final String CLOCK_DEFINITION_REGEX = "^" + namedGroup(CLOCK_ORIGIN_NAME_GROUP_NAME, CLOCK_ORIGIN_NAME_REGEX) + "([(]" + namedGroup(ARGUMENTS_GROUP_NAME, ARGUMENT_REGEX + "([,]" + ARGUMENT_REGEX + ")*") + "?" + "[)])?" + "$";
     private static final Pattern CLOCK_DEFINITION_PATTERN = Pattern.compile(CLOCK_DEFINITION_REGEX);
 
     private static final String ARGUMENT_GROUP_NAME = "argument";
@@ -69,35 +68,35 @@ public class ClockDeclaration {
 
     private static Clock parse(String declaration) {
         log.debug("Clock builder creation from clock declaration {}.", declaration);
-        ClockBuilder clockBuilder = null;
+        ClockConfiguration.Builder clockConfigurationBuilder = null;
         Matcher matcher = CLOCK_DEFINITION_PATTERN.matcher(declaration);
         if (!matcher.matches()) {
             log.warn("Failure to parse; cannot match syntax of clock declaration {}!", declaration);
             throw new IllegalArgumentException(String.format("Failure to parse; cannot syntax of match clock declaration %s!", declaration));
         } else {
-            String factoryName = matcher.group(FACTORY_NAME_GROUP_NAME);
-            String factoryArguments = matcher.group(FACTORY_ARGUMENTS_GROUP_NAME);
-            log.debug("Clock builder creation from clock declaration {} read factory name {} and factory arguments {}.", declaration, factoryName, factoryArguments);
-            Map<String, String> factoryArgumentMap = null;
-            if (factoryArguments != null) {
-                factoryArgumentMap = parseFactoryArguments(factoryArguments);
+            String clockOriginName = matcher.group(CLOCK_ORIGIN_NAME_GROUP_NAME);
+            String arguments = matcher.group(ARGUMENTS_GROUP_NAME);
+            log.debug("Clock builder creation from clock declaration {} read clock origin name {} and arguments {}.", declaration, clockOriginName, arguments);
+            Map<String,String> argumentMap=new LinkedHashMap<>();  //Yes, keep the keys in the order they were inserted!
+            argumentMap.put("origin",clockOriginName);
+            if (arguments!=null) {
+                parseArguments(argumentMap,arguments);
             }
-            clockBuilder = ClockBuilders.of(factoryName, factoryArgumentMap);
+            clockConfigurationBuilder=ClockConfiguration.Builder.of(argumentMap);
         }
-        log.debug("Parsing of clock declaration {} completed.", declaration);
-        return clockBuilder.build();
+        log.debug("Parsing of clock declaration {} completed.",declaration);
+        return clockConfigurationBuilder.build().toClock();
     }
 
-    private static Map<String, String> parseFactoryArguments(String factoryArguments) {
-        Map<String, String> factoryArgumentMap = new LinkedHashMap<>();  //Yes, keep the keys in                                                                                   the order they were inserted!
-        Matcher matcher = ARGUMENT_PATTERN.matcher(factoryArguments);
-        int start = 0;
+    private static void parseArguments(Map<String,String> argumentMap,
+                                       String arguments) {
+        Matcher matcher=ARGUMENT_PATTERN.matcher(arguments);
+        int start=0;
         while (matcher.find(start)) {
-            String name = matcher.group(ARGUMENT_NAME_GROUP_NAME);
-            String value = matcher.group(ARGUMENT_VALUE_GROUP_NAME);
-            factoryArgumentMap.put(name, value);
-            start = matcher.end();
+            String name=matcher.group(ARGUMENT_NAME_GROUP_NAME);
+            String value=matcher.group(ARGUMENT_VALUE_GROUP_NAME);
+            argumentMap.put(name,value);
+            start=matcher.end();
         }
-        return factoryArgumentMap;
     }
 }

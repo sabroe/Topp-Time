@@ -1,7 +1,7 @@
 /*** FILE "settings.gradle" ***************************************************/
 
-rootProject.name = 'Topp-Clock'
+rootProject.name = 'Yelstream Topp Time Project'
 
-include 'Topp-Clock-Library'
+include 'Topp-Time-Library'
 
 /******** "settings.gradle" ***************************************************/

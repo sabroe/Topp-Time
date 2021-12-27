@@ -1,9 +1,6 @@
 package com.yelstream.topp.time;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Clock;
 
@@ -17,6 +14,8 @@ import java.time.Clock;
  */
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString
 public class SimpleProxyClock extends AbstractProxyClock {
     @Getter
     @Setter

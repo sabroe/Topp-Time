@@ -1,7 +1,9 @@
 package com.yelstream.topp.time;
 
 import com.yelstream.topp.util.InstanceProvider;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.Clock;
 import java.util.function.Supplier;
@@ -15,14 +17,16 @@ import java.util.function.Supplier;
  * @since 2021-12-25
  */
 @NoArgsConstructor
-public class LazyInitializedProxyClock extends AbstractProxyClock {
+@EqualsAndHashCode(callSuper = true)
+@ToString
+public class LazyInitializedProxyClock0 extends AbstractProxyClock {
     private InstanceProvider<Clock> instanceProvider;
 
     /**
      * Constructor.
      * @param clockFactory Factory for creating the wrapped clock instance.
      */
-    public LazyInitializedProxyClock(Supplier<Clock> clockFactory) {
+    public LazyInitializedProxyClock0(Supplier<Clock> clockFactory) {
         this.instanceProvider = new InstanceProvider<>(clockFactory);
     }
 
