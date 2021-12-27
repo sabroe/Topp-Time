@@ -120,7 +120,7 @@ subprojects
          task listRepositories << {
               println "Repositories:"
               project.repositories.each { println "Name: "+it.name+", URL: "+it.url }
-	  }
+          }
 */
 
 /*
