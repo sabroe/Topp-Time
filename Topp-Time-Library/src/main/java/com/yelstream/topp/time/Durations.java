@@ -1,5 +1,6 @@
 package com.yelstream.topp.time;
 
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.Clock;
@@ -19,9 +20,8 @@ import java.time.ZonedDateTime;
  * @since 2021-12-19
  */
 @Slf4j
-public final class Durations {
-    private Durations() {}
-
+@UtilityClass
+public class Durations {
     /**
      * Gets the duration between the end of a specific date and the current time.
      * @param startLocalDateExclusive Date for the start of the duration, exclusive.

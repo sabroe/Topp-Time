@@ -1,5 +1,7 @@
 package com.yelstream.topp.time;
 
+import lombok.experimental.UtilityClass;
+
 import java.time.*;
 
 /**
@@ -10,9 +12,8 @@ import java.time.*;
  * @version 1.0
  * @since 2021-12-19
  */
-public final class Clocks {
-    private Clocks() {}
-
+@UtilityClass
+public class Clocks {
     /**
      * Creates a clock that uses the best available system clock in the default zone.
      * @return Best available system clock in the default zone.

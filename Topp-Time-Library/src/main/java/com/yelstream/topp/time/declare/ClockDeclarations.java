@@ -1,5 +1,6 @@
 package com.yelstream.topp.time.declare;
 
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.Clock;
@@ -13,9 +14,8 @@ import java.time.Clock;
  * @since 2021-12-19
  */
 @Slf4j
-public final class ClockDeclarations {
-    private ClockDeclarations() {}
-
+@UtilityClass
+public class ClockDeclarations {
     /**
      * Prefix for clock declaration names used for lookup within system properties.
      */
