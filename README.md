@@ -28,7 +28,7 @@ The current TODO list before release to Maven Central:
 
 1. Create demo-project aimed at a minimal Spring Boot setup.\
    Spring beans are to be instances of either Clock of Supplier<Clock>.\
-   Both types have advantages, the final verdict is not giveen, maybe poth should be possible?
+   Both types have advantages, the final verdict is not given, maybe both should be possible?
    1. With Clock you know that you have something workable at hand.
    2. With a Supplier there are better possibilities of lazy initialization and the initialization may follow a pattern of usage and not dictated by Spring.
 2. Textual configuration may be read -- can it also be written?\
