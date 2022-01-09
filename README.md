@@ -4,7 +4,7 @@ The Topp Time library addresses timelines in Java.
 
 ## Purpose
 
-Full control of Clock instances and timelines:
+Control of Clock instances and timelines:
 
 1. Independence of Java VM settings.
 2. Coexistence of multiple clocks, possibly in a hierarchical organization.
@@ -13,6 +13,8 @@ Full control of Clock instances and timelines:
 5. Builder support for the construction of clocks.
 6. Registration of clocks by name.
 7. Test-specific manipulation of time and timelines.
+8. Examples for different contexts.\
+   Standalone and Spring Boot.
 
 ## Dependencies
 
