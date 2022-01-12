@@ -30,9 +30,9 @@ class DurationsSpec extends Specification {
             duration == expectedDuration
 
         where:
-            calendarDate | clockStartTime     | expectedDuration
-            '2022-01-20' | '2022-01-25T12:00' | Duration.ofDays(4).plusHours(12)
-            '2022-07-20' | '2022-07-25T12:00' | Duration.ofDays(4).plusHours(12)
+            calendarDate | clockStartTime     || expectedDuration
+            '2022-01-20' | '2022-01-25T12:00' || Duration.ofDays(4).plusHours(12)
+            '2022-07-20' | '2022-07-25T12:00' || Duration.ofDays(4).plusHours(12)
     }
 
     @Unroll
@@ -50,8 +50,8 @@ class DurationsSpec extends Specification {
             duration < expectedDuration.plusSeconds(10)
 
         where:
-            calendarDate | clockStartTime     | expectedDuration
-            '2022-01-20' | '2022-01-25T12:00' | Duration.ofDays(4).plusHours(12)
-            '2022-07-20' | '2022-07-25T12:00' | Duration.ofDays(4).plusHours(12)
+            calendarDate | clockStartTime     || expectedDuration
+            '2022-01-20' | '2022-01-25T12:00' || Duration.ofDays(4).plusHours(12)
+            '2022-07-20' | '2022-07-25T12:00' || Duration.ofDays(4).plusHours(12)
     }
 }
