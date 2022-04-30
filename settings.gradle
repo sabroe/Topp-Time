@@ -1,7 +1,6 @@
-/*** FILE "settings.gradle" ***************************************************/
-
-rootProject.name = 'Yelstream Topp Time Project'
+rootProject.name = 'Yelstream Topp Time Utility Project'
 
 include 'Topp-Time-Library'
 
-/******** "settings.gradle" ***************************************************/
+include 'Demonstration:Java-SE-Demonstration-Application'
+include 'Demonstration:Spring-Core-Demonstration-Application'

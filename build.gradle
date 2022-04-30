@@ -51,6 +51,13 @@ allprojects
 
     project.version = custom.version?:buildTimeBySecond
 
+
+allprojects {  //HACK!
+    project.group 'io.github.sabroe.topp'
+    project.version '0.9.0-test'
+}
+
+
     logger.info(":> Project name:      $project.name")
     logger.info(":> Project directory: $project.projectDir")
     logger.info(":> Project version:   $project.version")

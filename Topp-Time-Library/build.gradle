@@ -1,68 +1,58 @@
 plugins {
     id 'java-library-distribution'
-    id 'groovy'
     id 'maven-publish'
+    id 'signing'
+    id 'groovy'
 }
 
-version = '0.5.0'
+//group 'io.github.sabroe.topp'
+//version '0.9.0-test'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
 
 test {
     systemProperty "org.slf4j.simpleLogger.defaultLogLevel", "debug"
-}
-
-test {
     useJUnitPlatform()
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.22'
-    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
     api 'org.slf4j:slf4j-api:1.7.32'
     testImplementation 'org.slf4j:slf4j-simple:1.7.32'
 
-    implementation 'org.threeten:threeten-extra:1.7.0'
+//    implementation 'org.threeten:threeten-extra:1.7.0'
 
     testImplementation 'org.codehaus.groovy:groovy:3.0.9'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
 }
 
-//https://docs.gradle.org/current/userguide/publishing_maven.html
-//https://dzone.com/articles/how-to-publish-artifacts-to-maven-central
 publishing {
     publications {
-        maven(MavenPublication) {
-            groupId = 'com.yelstream'
-            artifactId = 'topp-clock'
-            version = '0.5'
-
-            from components.java
-        }
-
         mavenJava(MavenPublication) {
-//            artifactId = 'Topp-Clock-${version}'
-            artifactId = 'Yelstream-Topp-Clock'
+            groupId = project.group
+            artifactId = 'topp-time-utility'
+            version = project.version
             from components.java
-            versionMapping {
-                usage('java-api') {
-                    fromResolutionOf('runtimeClasspath')
-                }
-                usage('java-runtime') {
-                    fromResolutionResult()
-                }
-            }
             pom {
-                name = 'My Topp-Clock Library'
-                description = 'A concise description of my library'
-                url = 'http://www.example.com/library'
-                properties = [
-                        myProp          : "value",
-                        "prop.with.dots": "anotherValue"
-                ]
+                name = 'Topp-Time'
+                description = 'Topp Time is an open-source Java library implementing timeline manipulation.'
+                url = 'https://github.com/sabroe/Topp-Time'
+                inceptionYear = '2021'
+
                 licenses {
                     license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name = 'Apache License 2.0'
+                        url = 'https://github.com/sabroe/Topp-Time/blob/main/LICENSE'
                     }
                 }
                 developers {
@@ -73,24 +63,26 @@ publishing {
                     }
                 }
                 scm {
-                    connection = 'scm:git:git://example.com/my-library.git'
-                    developerConnection = 'scm:git:ssh://example.com/my-library.git'
-                    url = 'http://example.com/my-library/'
+                    connection = 'scm:git:git:github.com:sabroe/Topp-Time.git'
+                    developerConnection = 'scm:git:ssh://github.com:sabroe/Topp-Time.git'
+                    url = 'https://github.com/sabroe/Topp-Time'
                 }
             }
         }
     }
 
-    java {
-        withJavadocJar()
-        withSourcesJar()
-    }
-
     repositories {
         maven {
-            // change to point to your repo, e.g. http://my.org/repo
-            url = layout.buildDirectory.dir('repo')
+            name = 'OSSRH'
+            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username = project.properties['ossrhUsername']
+                password = project.properties['ossrhPassword']
+            }
         }
     }
+}
 
+signing {
+    sign publishing.publications.mavenJava
 }
