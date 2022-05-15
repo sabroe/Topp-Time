@@ -54,7 +54,7 @@ allprojects
 
 allprojects {  //HACK!
     project.group 'io.github.sabroe.topp'
-    project.version '0.5.0-preliminary'
+    project.version '0.2.0'
 }
 
 
