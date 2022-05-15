@@ -1,3 +1,23 @@
+# Topp Time Library
+
+A Java utility library.
+
+## Description
+
+Topp Time is a utility libraries addressing timelines in Java.
+
+
+## Content
+
+Currently, the full content is _WIP_ and _TBD_.
+
+---
+
+_Greetings to all, Morten Sabroe Mortensen_
+<img align="right" width="250" src="doc/image/20220428_214818.png">
+<br clear="all">
+
+---
 # Topp Time
 
 The Topp Time library addresses timelines in Java.
